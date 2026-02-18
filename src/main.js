@@ -145,6 +145,15 @@ ipcMain.handle('delete-messages', async () => {
     db.deleteMessages();
 });
 
+ipcMain.handle('add-post', async (event, postData) => {
+  const { title, description } = postData;
+  db.createPost(title, description);
+
+  if(postsWindow) {
+    postsWindow.webContents.send('post-updated');
+  }
+});
+
 ipcMain.handle('get-posts', async () => {
     return db.getPosts();
 });

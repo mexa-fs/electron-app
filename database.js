@@ -30,7 +30,7 @@ let realmInstance;
 async function getRealm() {
     realmInstance = await Realm.open({
         path: path.join(__dirname, 'myrealm.realm'),
-        schema: [Message],
+        schema: [Message, Post],
     });
 };
 
@@ -61,6 +61,15 @@ function deleteMessages() {
     });
 };
 
+// function delteMessageById(messageId) {
+//     realmInstance.write(() => {
+//         const messageToDelete = realmInstance.objectForPrimaryKey('Message', new Realm.BSON.ObjectId(messageId));
+//         if (messageToDelete) {
+//             realmInstance.delete(messageToDelete);
+//         }
+//     });
+// };
+
 function createPost(title, description) {
     realmInstance.write(() => {
         realmInstance.create('Post', {
@@ -83,6 +92,15 @@ function deletePosts() {
     realmInstance.write(() => {
         const allPosts = realmInstance.objects('Post');
         realmInstance.delete(allPosts);
+    });
+};
+
+function deletePostById(postId) {
+    realmInstance.write(() => {
+        const postToDelete = realmInstance.objectForPrimaryKey('Post', new Realm.BSON.ObjectId(postId));
+        if (postToDelete) {
+            realmInstance.delete(postToDelete);
+        }
     });
 };
 

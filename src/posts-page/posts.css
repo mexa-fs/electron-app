@@ -7,6 +7,38 @@ body {
     justify-content: center;
 }
 
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
+.post-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.post-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.post-description {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
 .info-section {
     width: 100%;
     max-width: 800px;

@@ -10,25 +10,27 @@ addPostButton.addEventListener('click', async () => {
     await window.api.createAddPostsPopUp();
 });
 
-async function loadPosts() {
+const postsList = document.getElementById('post-list');
+async function getPosts() {
     const posts = await window.api.getPosts();
-    const postsContainer = document.getElementById('posts-container');
-    postsContainer.innerHTML = '';
-
+    postsList.innerText = posts.length === 0 ? 'Пока постов нет.' : '';
     posts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.classList.add('post');
-
-        const titleElement = document.createElement('h3');
-        titleElement.textContent = post.title;
-
-        const descriptionElement = document.createElement('p');
-        descriptionElement.textContent = post.description;
-
-        postElement.appendChild(titleElement);
-        postElement.appendChild(descriptionElement);
-        postsContainer.appendChild(postElement);
+        const postItem = document.createElement('p');
+        postItem.textContent = `Title: ${post.title}, Description: ${post.description}`;
+        postsList.appendChild(postItem);
     });
-}
+};
 
-loadPosts();
+window.api.onPostsUpdated(() => {
+    getPosts();
+});
+
+const deleteButton = document.getElementById('delete-button');
+deleteButton.addEventListener('click', async () => {
+    await window.api.deletePosts();
+    getPosts();
+});
+
+window.api.onPostsUpdated(() => {
+    getPosts();
+});
