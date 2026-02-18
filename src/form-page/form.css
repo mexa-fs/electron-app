@@ -1,0 +1,85 @@
+.form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.form-section h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #2c3e50;
+  text-align: center;
+}
+
+#emailForm {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+#emailForm label {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #34495e;
+}
+
+#emailForm input,
+#emailForm textarea {
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #dcdfe6;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+#emailForm textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+#emailForm input:focus,
+#emailForm textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+#emailForm button {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+#emailForm button[type="submit"] {
+  background: #007bff;
+  color: #fff;
+}
+
+#emailForm button[type="submit"]:hover {
+  background: #0056b3;
+}
+
+#back-button {
+  background: #e0e6ed;
+  color: #2c3e50;
+}
+
+#back-button:hover {
+  background: #cbd3dc;
+}

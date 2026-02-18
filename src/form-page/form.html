@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Форма для отправки письма</title>
+    </head>
+    <body>
+        <section class="form-section">
+            <h1>Форма для отправки письма</h1>
+            <form id="emailForm">
+                <label for="to">Кому:</label><br />
+                <input type="email" id="to" name="to" required /><br />
+                <label for="subject">Тема:</label><br />
+                <input type="text" id="subject" name="subject" required /><br />
+                <label for="message">Сообщение:</label><br />
+                <textarea id="message" name="message" required></textarea><br />
+                <button type="submit" id="submit-form">Отправить</button>
+                <button type="button" id="back-button">Назад</button>
+            </form>
+        </section>
+    </body>
+</html>

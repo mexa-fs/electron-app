@@ -1,0 +1,103 @@
+const { FusesPlugin } = require('@electron-forge/plugin-fuses');
+const { FuseV1Options, FuseVersion } = require('@electron/fuses');
+
+module.exports = {
+  packagerConfig: {
+    asar: true,
+  },
+  rebuildConfig: {},
+  makers: [
+    {
+      name: '@electron-forge/maker-squirrel',
+      config: {},
+    },
+    {
+      name: '@electron-forge/maker-zip',
+      platforms: ['darwin'],
+    },
+    {
+      name: '@electron-forge/maker-deb',
+      config: {},
+    },
+    {
+      name: '@electron-forge/maker-rpm',
+      config: {},
+    },
+  ],
+  plugins: [
+    {
+      name: '@electron-forge/plugin-auto-unpack-natives',
+      config: {},
+    },
+    {
+      name: '@electron-forge/plugin-webpack',
+      config: {
+        mainConfig: './webpack.main.config.js',
+        renderer: {
+          config: './webpack.renderer.config.js',
+          entryPoints: [
+            {
+              html: './src/index.html',
+              js: './src/renderer.js',
+              name: 'main_window',
+              preload: {
+                js: './src/preload.js',
+              },
+            },
+            {
+              html: './src/form-page/form.html',
+              js: './src/form-page/renderer.js',
+              name: 'form_window',
+              preload: {
+                js: './src/form-page/preload.js',
+              },
+            },
+            {
+              html: './src/info-page/info.html',
+              js: './src/info-page/renderer.js',
+              name: 'info_window',
+              preload: {
+                js: './src/info-page/preload.js',
+              },
+            },
+            {
+              html: './src/posts-page/posts.html',
+              js: './src/posts-page/renderer.js',
+              name: 'posts_window',
+              preload: {
+                js: './src/posts-page/preload.js',
+              },
+            },
+            {
+              html: './src/message-page/messages.html',
+              js: './src/message-page/renderer.js',
+              name: 'messages_window',
+              preload: {
+                js: './src/message-page/preload.js',
+              },
+            },
+            {
+              html: './src/pop-up/pop-up.html',
+              js: './src/pop-up/renderer.js',
+              name: 'add_posts_pop_up',
+              preload: {
+                js: './src/pop-up/preload.js',
+              },
+            }
+          ],
+        },
+      },
+    },
+    // Fuses are used to enable/disable various Electron functionality
+    // at package time, before code signing the application
+    new FusesPlugin({
+      version: FuseVersion.V1,
+      [FuseV1Options.RunAsNode]: false,
+      [FuseV1Options.EnableCookieEncryption]: true,
+      [FuseV1Options.EnableNodeOptionsEnvironmentVariable]: false,
+      [FuseV1Options.EnableNodeCliInspectArguments]: false,
+      [FuseV1Options.EnableEmbeddedAsarIntegrityValidation]: true,
+      [FuseV1Options.OnlyLoadAppFromAsar]: true,
+    }),
+  ],
+};
