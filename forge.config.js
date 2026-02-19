@@ -37,11 +37,11 @@ module.exports = {
           config: './webpack.renderer.config.js',
           entryPoints: [
             {
-              html: './src/index.html',
-              js: './src/renderer.js',
+              html: './src/main-page/index.html',
+              js: './src/main-page/renderer.js',
               name: 'main_window',
               preload: {
-                js: './src/preload.js',
+                js: './src/main-page/preload.js',
               },
             },
             {

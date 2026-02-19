@@ -12,6 +12,16 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
+  "mocha": {
+    "$schema": "https://json.schemastore.org/mocharc.json",
+    "require": "tsx",
+    "extension": [
+      "js",
+      "cjs",
+      "mjs",
+      "ts"
+    ]
+  },
   "keywords": [],
   "author": {
     "name": "mexa-fs",
@@ -32,7 +42,9 @@
     "css-loader": "^6.11.0",
     "electron": "40.4.1",
     "node-loader": "^2.1.0",
-    "style-loader": "^3.3.4"
+    "style-loader": "^3.3.4",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",

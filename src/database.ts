@@ -1,8 +1,26 @@
-const path = require('path');
-const Realm = require('realm');
+import path from "path";
+import Realm from "realm";
+import { IMessage } from "../utils/IMessage";
+import { IPost } from "../utils/IPost";
 
-class Message extends Realm.Object {}
-class Post extends Realm.Object {}
+
+
+class Message extends Realm.Object {
+    _id!: Realm.BSON.ObjectId;
+    to_whom!: string;
+    text_theme!: string;
+    message!: string;
+
+    static schema: Realm.ObjectSchema;
+};
+
+class Post extends Realm.Object {
+    _id!: Realm.BSON.ObjectId;
+    title!: string;
+    description!: string;
+
+    static schema: Realm.ObjectSchema;
+}
 
 Post.schema = {
   name: 'Post',
@@ -25,7 +43,7 @@ Message.schema = {
   primaryKey: '_id',
 };
 
-let realmInstance;
+let realmInstance: any;
 
 async function getRealm() {
     realmInstance = await Realm.open({
@@ -34,19 +52,19 @@ async function getRealm() {
     });
 };
 
-function createMessage(to_whom, text_theme, message) {
+function createMessage(message: IMessage) {
     realmInstance.write(() => {
         realmInstance.create('Message', {
             _id: new Realm.BSON.ObjectId(),
-            to_whom: to_whom,
-            text_theme: text_theme,
-            message: message,
+            to_whom: message.to_whom,
+            text_theme: message.text_theme,
+            message: message.message,
         });
     });
 };
 
-function getMessages() {
-    return realmInstance.objects('Message').map(msg => ({
+function getMessages(): IMessage[] {
+    return realmInstance.objects('Message').map((msg: IMessage) => ({
         _id: msg._id.toString(),
         to_whom: msg.to_whom,
         text_theme: msg.text_theme,
@@ -70,18 +88,18 @@ function deleteMessages() {
 //     });
 // };
 
-function createPost(title, description) {
+function createPost(IPost: IPost) {
     realmInstance.write(() => {
         realmInstance.create('Post', {
             _id: new Realm.BSON.ObjectId(),
-            title: title,
-            description: description,
+            title: IPost.title,
+            description: IPost.description,
         });
     });
 };
 
 function getPosts() {
-    return realmInstance.objects('Post').map(post => ({
+    return realmInstance.objects('Post').map((post: IPost) => ({
         _id: post._id.toString(),
         title: post.title,
         description: post.description,
@@ -95,7 +113,7 @@ function deletePosts() {
     });
 };
 
-function deletePostById(postId) {
+function deletePostById(postId: string) {
     realmInstance.write(() => {
         const postToDelete = realmInstance.objectForPrimaryKey('Post', new Realm.BSON.ObjectId(postId));
         if (postToDelete) {
@@ -104,4 +122,4 @@ function deletePostById(postId) {
     });
 };
 
-module.exports = { getRealm, createMessage, getMessages, createPost, getPosts, deleteMessages, deletePosts };
+export default { getRealm, createMessage, getMessages, createPost, getPosts, deleteMessages, deletePosts };
