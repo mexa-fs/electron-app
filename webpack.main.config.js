@@ -14,12 +14,26 @@ module.exports = {
       ...require('./webpack.rules'),
       {
         test: /\.ts?$/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: 'tsconfig.renderer.json',
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
       {
         test: /\.js$/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: 'tsconfig.renderer.json',
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
     ],

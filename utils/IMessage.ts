@@ -4,3 +4,9 @@ export interface IMessage {
     text_theme: string;
     message: string;
 }
+
+export interface CreateMessageDTO {
+    to_whom: string;
+    text_theme: string;
+    message: string;
+}

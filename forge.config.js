@@ -38,50 +38,50 @@ module.exports = {
           entryPoints: [
             {
               html: './src/main-page/index.html',
-              js: './src/main-page/renderer.js',
+              js: './src/main-page/renderer.ts',
               name: 'main_window',
               preload: {
-                js: './src/main-page/preload.js',
+                js: './src/main-page/preload.ts',
               },
             },
             {
               html: './src/form-page/form.html',
-              js: './src/form-page/renderer.js',
+              js: './src/form-page/renderer.ts',
               name: 'form_window',
               preload: {
-                js: './src/form-page/preload.js',
+                js: './src/form-page/preload.ts',
               },
             },
             {
               html: './src/info-page/info.html',
-              js: './src/info-page/renderer.js',
+              js: './src/info-page/renderer.ts',
               name: 'info_window',
               preload: {
-                js: './src/info-page/preload.js',
+                js: './src/info-page/preload.ts',
               },
             },
             {
               html: './src/posts-page/posts.html',
-              js: './src/posts-page/renderer.js',
+              js: './src/posts-page/renderer.ts',
               name: 'posts_window',
               preload: {
-                js: './src/posts-page/preload.js',
+                js: './src/posts-page/preload.ts',
               },
             },
             {
               html: './src/message-page/messages.html',
-              js: './src/message-page/renderer.js',
+              js: './src/message-page/renderer.ts',
               name: 'messages_window',
               preload: {
-                js: './src/message-page/preload.js',
+                js: './src/message-page/preload.ts',
               },
             },
             {
               html: './src/pop-up/pop-up.html',
-              js: './src/pop-up/renderer.js',
+              js: './src/pop-up/renderer.ts',
               name: 'add_posts_pop_up',
               preload: {
-                js: './src/pop-up/preload.js',
+                js: './src/pop-up/preload.ts',
               },
             }
           ],

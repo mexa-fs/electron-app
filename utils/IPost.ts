@@ -3,3 +3,8 @@ export interface IPost {
     title: string;
     description: string;
 }
+
+export interface CreatePostDTO {
+    title: string;
+    description: string;
+}
